@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Money Factor Explained — Interactive Lease Guide</title>
+    <meta
+      name="description"
+      content="What a car-lease money factor is, how to convert it to APR, and how changing cap cost, residual, term, and the factor itself changes your payment."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="site">
+        <div class="brand">Lease Rate Lab</div>
+        <nav class="jump">
+          <a href="#what">What it is</a>
+          <a href="#formula">Formula</a>
+          <a href="#markup">Markup</a>
+          <a href="#protect">Protect yourself</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <h1>The money factor is the lease’s interest rate — <span>disguised as a tiny decimal</span></h1>
+        <p class="lede">
+          Every lease payment is depreciation plus a finance charge. The money factor sets that finance charge. Move
+          the sliders to watch the same deal get cheaper or more expensive when the factor, residual, or cap cost
+          changes.
+        </p>
+        <div class="source-chip">
+          Source:
+          <strong
+            ><a href="https://www.thevantagegroupauto.com/blog/money-factor-explained" target="_blank" rel="noopener"
+              >The Vantage Group — Money Factor Explained</a
+            ></strong
+          >
+        </div>
+      </section>
+
+      <div class="layout">
+        <main>
+          <article class="card card-pad" id="what">
+            <div class="kicker">Definition</div>
+            <h2>What is a money factor?</h2>
+            <p>
+              A lease payment has two main pieces: the <strong>depreciation charge</strong> (how much the car is
+              expected to lose during the term) and the <strong>finance charge</strong> (the cost of borrowing). The
+              money factor is the lease world’s version of an interest rate. It is written as a small decimal such as
+              <code>0.00125</code> instead of a percentage.
+            </p>
+            <p>
+              Those decimals look harmless. They are not. Multiply the money factor by <strong>2,400</strong> to get an
+              approximate APR:
+            </p>
+            <div class="example-grid">
+              <div class="pill"><span class="lbl">0.00050</span><span class="val">1.2% APR</span></div>
+              <div class="pill"><span class="lbl">0.00100</span><span class="val">2.4% APR</span></div>
+              <div class="pill"><span class="lbl">0.00125</span><span class="val">3.0% APR</span></div>
+              <div class="pill"><span class="lbl">0.00150</span><span class="val">3.6% APR</span></div>
+              <div class="pill"><span class="lbl">0.00200</span><span class="val">4.8% APR</span></div>
+              <div class="pill"><span class="lbl">0.00250</span><span class="val">6.0% APR</span></div>
+            </div>
+            <p>
+              A dealer quoting <code>0.00200</code> sounds smaller than saying “you are paying 4.8% on this lease.” That
+              format is part of why most shoppers never question the rate.
+            </p>
+          </article>
+
+          <article class="card card-pad" id="formula">
+            <div class="kicker">The math</div>
+            <h2>How the money factor hits the monthly payment</h2>
+            <p>
+              Unlike a loan, the finance charge is applied to <em>both</em> the amount you are using up (cap cost) and
+              the part you are not buying (residual). That is why the factor is multiplied by the sum of the two.
+            </p>
+            <div class="formula">
+              Finance charge / mo = (<em>Cap cost</em> + <em>Residual</em>) × <em>Money factor</em>
+            </div>
+            <div class="formula">
+              Depreciation / mo = (<em>Cap cost</em> − <em>Residual</em>) ÷ <em>Term</em>
+            </div>
+            <div class="formula">Base payment = Depreciation + Finance charge</div>
+            <p>
+              The Vantage article’s worked example uses a <strong>$40,000</strong> cap cost and a
+              <strong>$24,000</strong> residual:
+            </p>
+            <ul class="tips">
+              <li>Money factor <code>0.00100</code> (2.4% APR) → finance charge <strong>$64</strong> / month</li>
+              <li>Money factor <code>0.00200</code> (4.8% APR) → finance charge <strong>$128</strong> / month</li>
+              <li>Money factor <code>0.00250</code> (6.0% APR) → finance charge <strong>$160</strong> / month</li>
+            </ul>
+            <p>
+              Best vs. worst in that set is <strong>$96 per month</strong>, or <strong>$3,456</strong> over 36 months —
+              determined by a number most buyers never see.
+            </p>
+
+            <h3>Why multiply by 2,400?</h3>
+            <p>
+              Interest is charged on the <em>average</em> balance of the lease, which sits halfway between cap cost and
+              residual. A yearly rate divided into months is APR ÷ 12 ÷ 100. Splitting the balance in half folds another
+              ÷ 2 into the same shortcut, which is APR ÷ 2,400. So:
+            </p>
+            <div class="formula">Approximate APR % = Money factor × 2400</div>
+            <div class="why-2400">
+              <div class="step">
+                <div class="n">01</div>
+                Monthly rate ≈ APR / 1200
+              </div>
+              <div class="step">
+                <div class="n">02</div>
+                Charge applies to (cap + residual) / 2
+              </div>
+              <div class="step">
+                <div class="n">03</div>
+                Combined constant: 1200 × 2 = 2400
+              </div>
+            </div>
+          </article>
+
+          <article class="card card-pad" id="markup">
+            <div class="kicker">The part dealers skip</div>
+            <h2>The markup nobody volunteers</h2>
+            <p>
+              Manufacturers set a <strong>base</strong> (or “buy”) money factor each month by vehicle, term, mileage,
+              and credit tier — Toyota Financial, BMW Financial, Ally, Chase Auto, and the rest publish these to
+              dealers. Dealers may mark that number up and keep the spread.
+            </p>
+            <p>
+              If the base factor is <code>0.00100</code> and the quoted factor is <code>0.00150</code>, the
+              <code>0.00050</code> markup on a $64,000 combined cap + residual is <strong>$32 / month</strong>, or
+              <strong>$1,152</strong> over 36 months. A typical <code>0.00050</code> markup can add $20–$50 a month,
+              which is $720–$1,800 over three years. It is legal. It is common. It does not appear unless you ask.
+            </p>
+            <p>
+              Credit tier matters too. Tier 1 (often 720+) gets the lowest base factor; lower tiers pay more. Two people
+              leasing the same car at the same store can be on different factors.
+            </p>
+          </article>
+
+          <article class="card card-pad" id="protect">
+            <div class="kicker">What to do</div>
+            <h2>How to protect yourself</h2>
+            <ul class="tips">
+              <li>Ask: “What money factor are you using?” Silence is a red flag.</li>
+              <li>Ask: “Is that the manufacturer’s base factor, or has it been marked up?”</li>
+              <li>
+                Look up current base factors in lease forums before you sit down. Walking in with the buy rate is
+                leverage.
+              </li>
+              <li>
+                Get a credit-union loan pre-approval. If they offer 4% and the lease converts to 6%, the lease rate is
+                inflated.
+              </li>
+              <li>
+                A lower factor is always better <em>all else equal</em> — but residual value can offset a cheap rate.
+                Optimize both, not just one.
+              </li>
+            </ul>
+            <p class="tight">
+              Vantage, the source of this explainer, is a New Jersey auto broker that says it locks manufacturer base
+              factors with no dealer markup. This page is an educational model of their article, not an offer from them.
+            </p>
+          </article>
+
+          <article class="card card-pad" id="compare">
+            <div class="kicker">Live comparison</div>
+            <h2>Same car, six money factors</h2>
+            <p>
+              The table uses your current cap cost, residual, term, and tax. Click any column header to sort. The row
+              matching your slider is highlighted.
+            </p>
+            <div class="table-wrap">
+              <table class="live" id="scenario-table">
+                <thead>
+                  <tr>
+                    <th data-key="moneyFactor" aria-sort="ascending">Money factor</th>
+                    <th data-key="apr">APR</th>
+                    <th data-key="financeMonthly">Finance / mo</th>
+                    <th data-key="baseMonthly">Base payment</th>
+                    <th data-key="totalFinancePaid">Finance over term</th>
+                    <th data-key="totalOfPayments">All payments</th>
+                  </tr>
+                </thead>
+                <tbody id="scenario-body"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="card card-pad faq" id="faq">
+            <div class="kicker">FAQ</div>
+            <h2>Common questions</h2>
+            <details open>
+              <summary>What is a money factor on a car lease?</summary>
+              <p>
+                The lease equivalent of an interest rate, written as a small decimal such as 0.00125. Multiply by 2,400
+                for an approximate APR. It sets the finance-charge slice of the monthly payment.
+              </p>
+            </details>
+            <details>
+              <summary>How do I convert money factor to APR?</summary>
+              <p>
+                Money factor × 2,400. Example: 0.00150 × 2,400 = 3.6% APR. Close enough to compare against a loan quote,
+                even if it is not a legally precise APR disclosure.
+              </p>
+            </details>
+            <details>
+              <summary>Can a dealer mark up the money factor?</summary>
+              <p>
+                Yes. The manufacturer sets a base factor. Dealers may add a markup and keep it. They are not required to
+                disclose the markup unless you ask.
+              </p>
+            </details>
+            <details>
+              <summary>Does credit score change the factor?</summary>
+              <p>
+                Yes. Each finance arm publishes different factors by credit tier, and those grids change monthly. Better
+                credit usually means a lower base factor.
+              </p>
+            </details>
+            <details>
+              <summary>Is a lower money factor always better?</summary>
+              <p>
+                All else equal, yes. In the real world a subsidized factor sometimes comes with a weaker residual, or
+                the reverse. The payment is the combination of both.
+              </p>
+            </details>
+            <details>
+              <summary>What if the car is worth more than the residual at turn-in?</summary>
+              <p>
+                You have equity. You can buy at the residual and keep or sell the car. That is one reason a high residual
+                is valuable even before the monthly math.
+              </p>
+            </details>
+          </article>
+        </main>
+
+        <aside class="sticky-panel">
+          <div class="card card-pad">
+            <div class="panel-head">
+              <h2>Play with the deal</h2>
+              <button type="button" class="reset" id="reset">Reset</button>
+            </div>
+            <p class="tight">Every control recalculates the payment, the APR, and the markup cost instantly.</p>
+
+            <div class="field">
+              <div class="field-row">
+                <label for="msrp">MSRP</label>
+                <span class="readout" data-for="msrp"></span>
+              </div>
+              <input class="slider" id="msrp" type="range" min="20000" max="120000" step="500" />
+              <input class="num" type="number" id="msrpNum" hidden />
+            </div>
+
+            <div class="field">
+              <div class="field-row">
+                <label for="sellingPrice">Selling price (cap cost before fees)</label>
+                <span class="readout" data-for="sellingPrice"></span>
+              </div>
+              <input id="sellingPrice" type="range" min="15000" max="120000" step="250" />
+            </div>
+
+            <div class="field">
+              <div class="field-row">
+                <label for="acquisitionFee">Acquisition fee (rolled in)</label>
+                <span class="readout" data-for="acquisitionFee"></span>
+              </div>
+              <input id="acquisitionFee" type="range" min="0" max="1495" step="5" />
+            </div>
+
+            <div class="field">
+              <div class="field-row">
+                <label for="capReduction">Cap-cost reduction / cash due</label>
+                <span class="readout" data-for="capReduction"></span>
+              </div>
+              <input id="capReduction" type="range" min="0" max="15000" step="250" />
+            </div>
+
+            <div class="field">
+              <div class="field-row">
+                <label for="residualPct">Residual % of MSRP</label>
+                <span class="readout" data-for="residualPct"></span>
+              </div>
+              <input id="residualPct" type="range" min="30" max="75" step="1" />
+              <div class="hint">Residual dollars = MSRP × this percent. Higher residual, lower depreciation.</div>
+            </div>
+
+            <div class="field">
+              <div class="field-row">
+                <label for="termMonths">Term (months)</label>
+                <span class="readout" data-for="termMonths"></span>
+              </div>
+              <input id="termMonths" type="range" min="24" max="48" step="1" />
+            </div>
+
+            <div class="field">
+              <div class="field-row">
+                <label for="moneyFactor">Money factor</label>
+                <span class="readout" data-for="moneyFactor"></span>
+              </div>
+              <input id="moneyFactor" type="range" min="0.00020" max="0.00500" step="0.00005" />
+            </div>
+
+            <div class="field">
+              <div class="field-row">
+                <label for="apr">Equivalent APR</label>
+                <span class="readout" data-for="apr"></span>
+              </div>
+              <input id="apr" type="range" min="0.48" max="12" step="0.12" />
+              <div class="hint">APR and money factor stay locked together (APR = MF × 2400).</div>
+            </div>
+
+            <div class="field">
+              <div class="field-row">
+                <label for="baseMoneyFactor">Manufacturer base money factor</label>
+                <span class="readout" data-for="baseMoneyFactor"></span>
+              </div>
+              <input id="baseMoneyFactor" type="range" min="0.00020" max="0.00500" step="0.00005" />
+              <div class="hint">Set this to the published buy rate to measure dealer markup.</div>
+            </div>
+
+            <div class="field">
+              <div class="field-row">
+                <label for="taxRatePct">Sales tax on payment</label>
+                <span class="readout" data-for="taxRatePct"></span>
+              </div>
+              <input id="taxRatePct" type="range" min="0" max="12" step="0.25" />
+              <div class="hint">Simplified: tax applied to the monthly payment. States differ.</div>
+            </div>
+
+            <div class="results" id="results"></div>
+          </div>
+        </aside>
+      </div>
+
+      <footer class="site">
+        <p>
+          Educational model based on
+          <a href="https://www.thevantagegroupauto.com/blog/money-factor-explained" target="_blank" rel="noopener"
+            >Money Factor to APR: How to Convert It</a
+          >
+          by David Goldstein and Sean Ulsaker at The Vantage Group. Not affiliated with Vantage. Figures are pre-fee
+          worksheet math and omit disposition fees, mileage overage, and state-specific tax timing.
+        </p>
+        <p>Lease Rate Lab · interactive money-factor explainer</p>
+      </footer>
+    </div>
+    <script src="js/calc.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
