@@ -26,40 +26,7 @@ body {
 body.estimator-page {
   font-family: var(--est-font);
   color: var(--est-text);
-  background: #1a1a1a;
-}
-
-.dealer-backdrop {
-  position: fixed;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(20, 20, 20, 0.35), rgba(20, 20, 20, 0.2)),
-    radial-gradient(circle at 80% 40%, #7a1c1c 0%, #2b2b2b 55%);
-  z-index: 0;
-}
-
-.dealer-backdrop .ghost {
-  position: absolute;
-  color: rgba(255, 255, 255, 0.18);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  user-select: none;
-}
-
-.dealer-backdrop .ghost.a {
-  top: 90px;
-  left: 18px;
-  font-size: 22px;
-}
-.dealer-backdrop .ghost.b {
-  top: 88px;
-  right: 70px;
-  font-size: 22px;
-}
-.dealer-backdrop .ghost.c {
-  bottom: 140px;
-  right: 40px;
-  font-size: 48px;
+  background: #f4f4f4;
 }
 
 .estimator-shell {
@@ -68,38 +35,17 @@ body.estimator-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 28px 16px 48px;
-}
-
-.lab-nav {
-  width: min(1180px, 100%);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #eee;
-  margin-bottom: 16px;
-  font-size: 14px;
-}
-
-.lab-nav a {
-  color: #f0cf7a;
-  text-decoration: none;
-  margin-left: 14px;
-}
-.lab-nav a:hover {
-  text-decoration: underline;
-}
-.lab-nav .brand {
-  font-weight: 700;
+  align-items: stretch;
+  padding: 16px 20px 28px;
 }
 
 .estimator-modal {
-  width: min(1180px, 100%);
+  width: 100%;
+  max-width: none;
   background: var(--est-bg);
   border-radius: 10px;
   box-shadow: var(--est-shadow);
-  padding: 22px 28px 18px;
+  padding: 22px 36px 24px;
   position: relative;
 }
 

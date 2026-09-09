@@ -17,20 +17,7 @@
     <link rel="stylesheet" href="css/estimator.css" />
   </head>
   <body class="estimator-page">
-    <div class="dealer-backdrop" aria-hidden="true">
-      <div class="ghost a">RE find</div>
-      <div class="ghost b">E</div>
-      <div class="ghost c">37</div>
-    </div>
-
     <div class="estimator-shell">
-      <div class="lab-nav">
-        <div class="brand">Lease Rate Lab</div>
-        <nav>
-          <a href="estimator.html">Payment estimator</a>
-        </nav>
-      </div>
-
       <div class="estimator-modal" data-estimator data-mode="lease">
         <button class="close-btn" type="button" data-close aria-label="Close">×</button>
 
@@ -159,7 +146,6 @@
                 <div class="line" style="padding-bottom: 0">
                   <div>
                     <div class="label">Adjusted Capitalized Costs</div>
-                    <p class="hint">Include available offers and incentives</p>
                   </div>
                   <span class="amt" data-cap>$40,880</span>
                 </div>
@@ -202,9 +188,6 @@
                 <div class="label">
                   Estimated Monthly Payment<br />
                   (without Taxes &amp; Fees)
-                  <div style="font-size: 12px; font-weight: 600; text-transform: none; color: #666; margin-top: 4px" data-lease-apr>
-                    3.0% APR equivalent
-                  </div>
                 </div>
                 <div class="amt" data-monthly>$494.98</div>
               </div>
@@ -212,7 +195,6 @@
 
             <div class="alt-pane finance">
               <h2 class="block-title">Finance estimate</h2>
-              <p class="hint" style="color:#666;margin-top:0">60 months at 5.99% APR on the amount financed after cash and offers. Not a credit decision.</p>
               <div class="line"><span>Amount financed</span><span class="amt" data-fin-amount>$0</span></div>
               <div class="line"><span>APR</span><span class="amt" data-fin-apr>5.99%</span></div>
               <div class="line"><span>Term</span><span class="amt">60 months</span></div>
@@ -224,7 +206,6 @@
 
             <div class="alt-pane cash">
               <h2 class="block-title">Cash price</h2>
-              <p class="hint" style="color:#666;margin-top:0">Sticker minus bonus cash and any checked conditional offers. Taxes and fees are quoted by the dealer at write-up.</p>
               <div class="field">
                 <label for="msrp-edit">MSRP / selling price</label>
                 <input id="msrp-edit" data-msrp type="text" value="49,630" />
