@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Payment Estimator</title>
+    <meta
+      name="description"
+      content="Dealer-style lease payment estimator with incentives, conditional offers, term, and due-at-signing breakdown."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/estimator.css" />
+  </head>
+  <body class="estimator-page">
+    <div class="dealer-backdrop" aria-hidden="true">
+      <div class="ghost a">RE find</div>
+      <div class="ghost b">E</div>
+      <div class="ghost c">37</div>
+    </div>
+
+    <div class="estimator-shell">
+      <div class="lab-nav">
+        <div class="brand">Lease Rate Lab</div>
+        <nav>
+          <a href="estimator.html">Payment estimator</a>
+        </nav>
+      </div>
+
+      <div class="estimator-modal" data-estimator data-mode="lease">
+        <button class="close-btn" type="button" data-close aria-label="Close">×</button>
+
+        <div class="est-header">
+          <h1>Payment Estimator</h1>
+          <div class="mode-tabs" role="tablist" aria-label="Deal type">
+            <button type="button" role="tab" data-mode-btn="lease" aria-pressed="true">Lease</button>
+            <button type="button" role="tab" data-mode-btn="finance" aria-pressed="false">Finance</button>
+            <button type="button" role="tab" data-mode-btn="cash" aria-pressed="false">Cash</button>
+          </div>
+        </div>
+
+        <div class="est-grid">
+          <div class="col-left">
+            <h2 class="block-title">Price Details</h2>
+            <div class="msrp-row">
+              <div class="msrp-label">
+                <u>MSRP</u> <span class="star">*</span> (Sticker Price)
+              </div>
+            </div>
+            <div class="vehicle-well" aria-hidden="true"></div>
+
+            <div class="field">
+              <label for="down" data-down-pct>Down Payment (4.03%)</label>
+              <input id="down" data-down type="text" inputmode="decimal" value="2,000" />
+            </div>
+
+            <div class="offer-box lease-only">
+              <div class="offer-head">
+                <button type="button" class="toggle-head" data-toggle-offers>
+                  Explore Conditional Offers
+                  <span>
+                    <span data-offer-total>$2,000</span>
+                    <span class="chev" data-offers-chev>▴</span>
+                  </span>
+                </button>
+              </div>
+              <div class="panel" data-offers-body>
+                <div class="offer-group">Military</div>
+                <label class="offer-row">
+                  <span class="left">
+                    <input type="checkbox" data-offer="military" />
+                    <span>National 2026 Military Bonus Cash <span class="info tip">i<span class="tip-body">Must present valid military ID at signing.</span></span></span>
+                  </span>
+                  <span>$500</span>
+                </label>
+
+                <div class="offer-group">National 2026 DriveAbility</div>
+                <label class="offer-row">
+                  <span class="left">
+                    <input type="checkbox" data-offer="driveability" />
+                    <span>National 2026 DriveAbility <span class="info tip">i<span class="tip-body">Mobility / adaptive-equipment program cash.</span></span></span>
+                  </span>
+                  <span>$1,000</span>
+                </label>
+
+                <div class="offer-group">Lease Loyalty</div>
+                <label class="offer-row">
+                  <span class="left">
+                    <input type="checkbox" data-offer="loyalty" checked />
+                    <span>National SFS Lease Loyalty Bonus Cash <span class="info tip">i<span class="tip-body">Requires an eligible in-term or turning Stellantis lease.</span></span></span>
+                  </span>
+                  <span>$2,000</span>
+                </label>
+
+                <div class="offer-group">First Responders</div>
+                <label class="offer-row">
+                  <span class="left">
+                    <input type="checkbox" data-offer="first-responder" />
+                    <span>National 2026 First Responder Bonus Cash <span class="info tip">i<span class="tip-body">Must present qualifying first-responder credentials.</span></span></span>
+                  </span>
+                  <span>$500</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="field lease-only" style="margin-top: 18px">
+              <label>Annual Mileage</label>
+              <div class="miles-row" style="padding-top: 22px">
+                <button type="button" class="miles-chip" data-miles="7500">7,500</button>
+                <button type="button" class="miles-chip" data-miles="10000">10,000</button>
+                <button type="button" class="miles-chip" data-miles="12000">12,000</button>
+                <button type="button" class="miles-chip" data-miles="15000">15,000</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-right">
+            <div class="term-block lease-only">
+              <h2>Term Duration</h2>
+              <div class="term-row">
+                <div class="msrp-inline" data-msrp-display>$49,630</div>
+                <button type="button" class="term-chip" data-term="48" aria-pressed="true"><strong>48</strong>months</button>
+                <button type="button" class="term-chip" data-term="42"><strong>42</strong>months</button>
+                <button type="button" class="term-chip" data-term="39"><strong>39</strong>months</button>
+                <button type="button" class="term-chip" data-term="36"><strong>36</strong>months</button>
+                <button type="button" class="term-chip" data-term="27"><strong>27</strong>months</button>
+                <button type="button" class="term-chip" data-term="24"><strong>24</strong>months</button>
+              </div>
+            </div>
+
+            <div class="lease-only">
+              <button type="button" class="toggle-head" data-toggle-incentives>
+                Incentives
+                <span>
+                  <span data-incentive-total>$4,750</span>
+                  <span class="chev" data-incentives-chev>▴</span>
+                </span>
+              </button>
+              <div class="panel" data-incentives-body data-incentive-list></div>
+
+              <div class="line">
+                <span>Conditional Offer</span>
+                <span class="amt" data-offer-total>$2,000</span>
+              </div>
+              <div class="line">
+                <span>Downpayment</span>
+                <span class="amt" data-down-line>$2,000</span>
+              </div>
+              <div class="line">
+                <span>Trade-in</span>
+                <button type="button" class="amt" data-edit-trade data-trade style="border:0;background:none;cursor:pointer;font:inherit;font-weight:600">$0</button>
+              </div>
+
+              <div class="cap-block">
+                <div class="line" style="padding-bottom: 0">
+                  <div>
+                    <div class="label">Adjusted Capitalized Costs</div>
+                    <p class="hint">Include available offers and incentives</p>
+                  </div>
+                  <span class="amt" data-cap>$40,880</span>
+                </div>
+              </div>
+
+              <button type="button" class="toggle-head" data-toggle-taxes>
+                <span>Taxes &amp; Fees <span class="info tip">i<span class="tip-body">NY-style tax on down payment + first month, plus an $80 documentation fee. Monthly payment below is quoted without tax.</span></span></span>
+                <span>
+                  <span data-tax>$301.43</span>
+                  <span class="chev" data-taxes-chev>▾</span>
+                </span>
+              </button>
+              <div class="panel hidden" data-taxes-body>
+                <div class="due-row"><span>Tax on down payment + first month (8.875%)</span><span>varies</span></div>
+                <div class="due-row"><span>Documentation fee</span><span>$80.00</span></div>
+              </div>
+
+              <div class="fi-block">
+                <h3>Financial Institutions</h3>
+                <div class="radio">
+                  <span class="dot" aria-hidden="true"></span>
+                  <div>Stellantis Financial Services - Subvented<br />Lease Rates</div>
+                </div>
+              </div>
+
+              <button type="button" class="toggle-head" data-toggle-due>
+                <span class="due-title">Due At Signing(Lease taxes paid upfront)</span>
+                <span>
+                  <span data-due>$2,796</span>
+                  <span class="chev" data-due-chev>▴</span>
+                </span>
+              </button>
+              <div class="panel" data-due-body>
+                <div class="due-row"><span>Down Payment</span><span data-due-down>$2,000</span></div>
+                <div class="due-row"><span>Taxes &amp; Fees</span><span data-due-tax>$301.43</span></div>
+                <div class="due-row"><span>First Month Payment</span><span data-due-first>$494.98</span></div>
+              </div>
+
+              <div class="pay-foot">
+                <div class="label">
+                  Estimated Monthly Payment<br />
+                  (without Taxes &amp; Fees)
+                  <div style="font-size: 12px; font-weight: 600; text-transform: none; color: #666; margin-top: 4px" data-lease-apr>
+                    3.0% APR equivalent
+                  </div>
+                </div>
+                <div class="amt" data-monthly>$494.98</div>
+              </div>
+            </div>
+
+            <div class="alt-pane finance">
+              <h2 class="block-title">Finance estimate</h2>
+              <p class="hint" style="color:#666;margin-top:0">60 months at 5.99% APR on the amount financed after cash and offers. Not a credit decision.</p>
+              <div class="line"><span>Amount financed</span><span class="amt" data-fin-amount>$0</span></div>
+              <div class="line"><span>APR</span><span class="amt" data-fin-apr>5.99%</span></div>
+              <div class="line"><span>Term</span><span class="amt">60 months</span></div>
+              <div class="pay-foot">
+                <div class="label">Estimated Monthly Payment</div>
+                <div class="amt" data-fin-monthly>$0.00</div>
+              </div>
+            </div>
+
+            <div class="alt-pane cash">
+              <h2 class="block-title">Cash price</h2>
+              <p class="hint" style="color:#666;margin-top:0">Sticker minus bonus cash and any checked conditional offers. Taxes and fees are quoted by the dealer at write-up.</p>
+              <div class="field">
+                <label for="msrp-edit">MSRP / selling price</label>
+                <input id="msrp-edit" data-msrp type="text" value="49,630" />
+              </div>
+              <div class="pay-foot">
+                <div class="label">Estimated Cash Price</div>
+                <div class="amt" data-cash-price>$0.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/estimator.js"></script>
+    <script src="js/estimator-app.js"></script>
+  </body>
+</html>
