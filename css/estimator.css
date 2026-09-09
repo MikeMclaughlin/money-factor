@@ -79,7 +79,7 @@ body.estimator-page {
   background: transparent;
   padding: 8px 22px;
   font: inherit;
-  font-size: 15px;
+  font-size: 25px;
   font-weight: 600;
   cursor: pointer;
   color: #222;
@@ -181,7 +181,7 @@ h2.block-title {
   border-radius: 4px;
   padding: 18px 12px 8px;
   font: inherit;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .field input:focus {
@@ -248,7 +248,7 @@ h2.block-title {
   justify-content: space-between;
   gap: 12px;
   padding: 7px 0;
-  font-size: 15px;
+  font-size: 25px;
 }
 
 .line .amt {
@@ -269,7 +269,7 @@ h2.block-title {
   background: transparent;
   padding: 8px 0;
   font: inherit;
-  font-size: 16px;
+  font-size: 26px;
   cursor: pointer;
   text-align: left;
 }
@@ -281,7 +281,7 @@ h2.block-title {
 .chev {
   display: inline-block;
   margin-left: 6px;
-  font-size: 12px;
+  font-size: 24px;
   transform: translateY(-1px);
 }
 
@@ -298,8 +298,8 @@ h2.block-title {
   align-items: flex-start;
   justify-content: space-between;
   gap: 10px;
-  padding: 6px 0;
-  font-size: 14px;
+  padding: 4px 0;
+  font-size: 24px;
 }
 
 .incentive-row .left,
@@ -325,7 +325,7 @@ h2.block-title {
   border-radius: 50%;
   background: #8d8d8d;
   color: #fff;
-  font-size: 10px;
+  font-size: 20px;
   font-weight: 700;
   margin-left: 4px;
   vertical-align: middle;
@@ -337,7 +337,7 @@ h2.block-title {
 }
 
 .cap-block .label {
-  font-size: 14px;
+  font-size: 24px;
   font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -346,12 +346,12 @@ h2.block-title {
 .cap-block .hint {
   margin: 2px 0 0;
   color: #666;
-  font-size: 13px;
+  font-size: 23px;
 }
 
 .fi-block h3 {
   margin: 10px 0 6px;
-  font-size: 16px;
+  font-size: 23px;
 }
 
 .radio {
@@ -380,13 +380,13 @@ h2.block-title {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  font-size: 16px;
+  font-size: 26px;
   margin-bottom: 6px;
 }
 
 .offer-group {
   font-weight: 800;
-  font-size: 15px;
+  font-size: 25px;
   margin: 8px 0 2px;
 }
 
@@ -438,7 +438,7 @@ h2.block-title {
   border-radius: 6px;
   padding: 8px 10px;
   font: inherit;
-  font-size: 13px;
+  font-size: 18px;
   cursor: pointer;
 }
 

@@ -19,14 +19,16 @@
     msrp: 49630,
     sellingPrice: 49630,
     down: 0,
-    tradeIn: 0,
+    incentiveTotal: 4750,
+    offerTotal: 2000,
+    taxAndFees: 301.43,
     term: 48,
     mileage: 12000,
-    taxRate: 0.08875,
+    taxRate: 0.057,
     docFee: 80,
     moneyFactor: 0.00125,
     mode: "lease",
-    financeApr: 0.0599,
+    financeApr: 0.0399,
     financeTerm: 60,
   };
 
@@ -112,39 +114,39 @@
     var msrp = Math.max(0, num(state.msrp, DEFAULTS.msrp));
     var selling = Math.max(0, num(state.sellingPrice, msrp));
     var down = Math.max(0, num(state.down, DEFAULTS.down));
-    var tradeIn = Math.max(0, num(state.tradeIn, DEFAULTS.tradeIn));
     var term = Math.round(num(state.term, DEFAULTS.term));
     var mileage = Math.round(num(state.mileage, DEFAULTS.mileage));
-    var selectedOffers = Array.isArray(state.selectedOffers) ? state.selectedOffers : ["loyalty"];
     var taxRate = num(state.taxRate, DEFAULTS.taxRate);
     var docFee = num(state.docFee, DEFAULTS.docFee);
 
-    var activeIncentives = incentivesFor(mode);
-    var incentiveTotal = sumAmounts(activeIncentives);
+    var incentiveTotal = Math.max(0, num(state.incentiveTotal, DEFAULTS.incentiveTotal));
+    var offerTotal = Math.max(0, num(state.offerTotal, DEFAULTS.offerTotal));
 
-    var activeOffers = OFFERS.filter(function (o) {
-      return selectedOffers.indexOf(o.id) !== -1;
-    });
-    var offerTotal = sumAmounts(activeOffers);
-
-    var reduction = incentiveTotal + offerTotal + down + tradeIn;
+    var reduction = incentiveTotal + offerTotal + down;
     var adjustedCap = Math.max(0, selling - reduction);
     var downPct = msrp > 0 ? (down / msrp) * 100 : 0;
 
     var resPct = residualPct(term, mileage);
     var residual = round2(msrp * (resPct / 100));
-    var mf = num(state.moneyFactor, moneyFactorFor(term, mode));
+    var rawMf = num(state.moneyFactor, moneyFactorFor(term, mode));
+    // Values >= 0.05 are treated as APR and converted (3.0 or 3 → 0.00125).
+    var mf = rawMf >= 0.05 ? rawMf / 2400 : rawMf;
+    if (mf < 0) mf = 0;
+    if (mf > 0.02) mf = 0.02;
 
     var depMonthly = term > 0 ? (adjustedCap - residual) / term : 0;
     var rentMonthly = (adjustedCap + residual) * mf;
     var baseMonthly = round2(Math.max(0, depMonthly + rentMonthly));
 
-    var taxAndFees = round2((down + baseMonthly) * taxRate + docFee);
+    var taxAndFees =
+      state.taxAndFees == null || state.taxAndFees === ""
+        ? round2((down + baseMonthly) * taxRate + docFee)
+        : Math.max(0, round2(num(state.taxAndFees, 0)));
     var dueAtSigning = round2(down + taxAndFees + baseMonthly);
 
     var financeTerm = Math.max(1, Math.round(num(state.financeTerm, DEFAULTS.financeTerm)));
     var financeApr = num(state.financeApr, DEFAULTS.financeApr);
-    var amountFinanced = Math.max(0, selling - incentiveTotal - offerTotal - down - tradeIn);
+    var amountFinanced = Math.max(0, selling - incentiveTotal - offerTotal - down);
     var monthlyRate = financeApr / 12;
     var financeMonthly =
       monthlyRate === 0
@@ -152,7 +154,7 @@
         : (amountFinanced * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -financeTerm));
     financeMonthly = round2(financeMonthly);
 
-    var cashPrice = Math.max(0, selling - incentiveTotal - offerTotal - tradeIn);
+    var cashPrice = Math.max(0, selling - incentiveTotal - offerTotal);
 
     return {
       mode: mode,
@@ -160,13 +162,9 @@
       sellingPrice: selling,
       down: down,
       downPct: downPct,
-      tradeIn: tradeIn,
       term: term,
       mileage: mileage,
-      incentives: activeIncentives,
       incentiveTotal: incentiveTotal,
-      offers: OFFERS,
-      activeOffers: activeOffers,
       offerTotal: offerTotal,
       adjustedCap: round2(adjustedCap),
       residual: residual,
