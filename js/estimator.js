@@ -18,7 +18,7 @@
   var DEFAULTS = {
     msrp: 49630,
     sellingPrice: 49630,
-    down: 2000,
+    down: 0,
     tradeIn: 0,
     term: 48,
     mileage: 12000,
