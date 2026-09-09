@@ -421,7 +421,8 @@ h2.block-title {
 }
 
 .pay-foot .amt {
-  font-size: 18px;
+  font-size: 28px;
+  background-color: rgb(171, 228, 179);
   font-weight: 700;
 }
 
