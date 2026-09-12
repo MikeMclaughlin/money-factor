@@ -20,7 +20,7 @@
 html,
 body {
   margin: 0;
-  min-height: 100%;
+  min-height: 100%;  
 }
 
 body.estimator-page {
@@ -55,7 +55,6 @@ body.estimator-page {
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 22px;
-  padding-right: 36px;
 }
 
 .est-header h1 {
@@ -79,7 +78,7 @@ body.estimator-page {
   background: transparent;
   padding: 8px 22px;
   font: inherit;
-  font-size: 25px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   color: #222;
@@ -171,7 +170,7 @@ h2.block-title {
 
 .field {
   position: relative;
-  margin: 10px 0 18px;
+  margin: 2px 0 8px;
 }
 
 .field input[type="text"],
@@ -179,15 +178,20 @@ h2.block-title {
   width: 100%;
   border: 1px solid #bdbdbd;
   border-radius: 4px;
-  padding: 18px 12px 8px;
+  padding: 13px 16px 3px;
   font: inherit;
-  font-size: 20px;
+  font-size: 23px;
 }
 
 .field input:focus {
   outline: 2px solid #111;
   outline-offset: 0;
   border-color: #111;
+}
+
+.field input[readonly] {
+  background: #f3f3f3;
+  color: #222;
 }
 
 .field label {
@@ -248,7 +252,8 @@ h2.block-title {
   justify-content: space-between;
   gap: 12px;
   padding: 7px 0;
-  font-size: 25px;
+  font-size: 26px;
+  border-bottom:1px solid silver;
 }
 
 .line .amt {
@@ -269,7 +274,7 @@ h2.block-title {
   background: transparent;
   padding: 8px 0;
   font: inherit;
-  font-size: 26px;
+  font-size: 16px;
   cursor: pointer;
   text-align: left;
 }
@@ -281,7 +286,7 @@ h2.block-title {
 .chev {
   display: inline-block;
   margin-left: 6px;
-  font-size: 24px;
+  font-size: 12px;
   transform: translateY(-1px);
 }
 
@@ -298,7 +303,7 @@ h2.block-title {
   align-items: flex-start;
   justify-content: space-between;
   gap: 10px;
-  padding: 4px 0;
+  padding: 2px 0;
   font-size: 24px;
 }
 
@@ -325,7 +330,7 @@ h2.block-title {
   border-radius: 50%;
   background: #8d8d8d;
   color: #fff;
-  font-size: 20px;
+  font-size: 10px;
   font-weight: 700;
   margin-left: 4px;
   vertical-align: middle;
@@ -337,7 +342,7 @@ h2.block-title {
 }
 
 .cap-block .label {
-  font-size: 24px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -346,12 +351,12 @@ h2.block-title {
 .cap-block .hint {
   margin: 2px 0 0;
   color: #666;
-  font-size: 23px;
+  font-size: 13px;
 }
 
 .fi-block h3 {
   margin: 10px 0 6px;
-  font-size: 23px;
+  font-size: 16px;
 }
 
 .radio {
@@ -380,13 +385,13 @@ h2.block-title {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  font-size: 26px;
+  font-size: 16px;
   margin-bottom: 6px;
 }
 
 .offer-group {
   font-weight: 800;
-  font-size: 25px;
+  font-size: 15px;
   margin: 8px 0 2px;
 }
 
@@ -421,8 +426,8 @@ h2.block-title {
 }
 
 .pay-foot .amt {
-  font-size: 28px;
-  background-color: rgb(171, 228, 179);
+  font-size: 25px;
+  background-color:rgb(194, 235, 194);
   font-weight: 700;
 }
 
@@ -430,16 +435,17 @@ h2.block-title {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 8px;
+  margin-top: 22px;
+  margin-left:100px;
 }
 
 .miles-chip {
   border: 1px solid #cfcfcf;
   background: #fff;
   border-radius: 6px;
-  padding: 8px 10px;
+  padding: 6px 2px;
   font: inherit;
-  font-size: 18px;
+  font-size: 23px;
   cursor: pointer;
 }
 
@@ -492,18 +498,54 @@ h2.block-title {
 }
 
 @media (max-width: 860px) {
+  .estimator-shell {
+    padding: 10px 10px 20px;
+  }
   .est-grid {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
   .est-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    gap: 12px;
   }
-  .close-btn {
-    top: 10px;
-    right: 8px;
+  .est-header h1 {
+    font-size: 22px;
+  }
+  .mode-tabs {
+    width: 100%;
+  }
+  .mode-tabs button {
+    flex: 1;
+    padding: 10px 12px;
   }
   .estimator-modal {
-    padding: 18px 16px 16px;
+    padding: 16px 14px 18px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .miles-row {
+    /* display: grid; */
+    grid-template-columns: 1fr 1fr;
+  }
+  .miles-chip,
+  .term-chip {
+    min-height: 44px;
+    padding:0px 8px;
+  }
+  .pay-foot {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .field input[type="text"],
+  .field input[type="number"] {
+    font-size: 16px;
+  }
+  .due-row {
+    flex-wrap: wrap;
   }
 }

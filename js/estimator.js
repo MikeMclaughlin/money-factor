@@ -1,7 +1,8 @@
 /**
  * Dealer-style payment estimator math.
- * Adjusted cap = selling − incentives − conditional − down − trade-in
+ * Adjusted cap = selling − incentives − conditional − down
  * Monthly (no tax) = depreciation + rent charge
+ * Tax = adjusted capitalized cost × tax rate
  */
 (function (root, factory) {
   if (typeof module === "object" && module.exports) {
@@ -21,12 +22,11 @@
     down: 0,
     incentiveTotal: 4750,
     offerTotal: 2000,
-    taxAndFees: 301.43,
-    term: 48,
+    fees: 80,
+    term: 42,
     mileage: 12000,
-    taxRate: 0.057,
-    docFee: 80,
-    moneyFactor: 0.00297,
+    taxRate: 0.063,
+    moneyFactor: 0.001,
     mode: "lease",
     financeApr: 0.0399,
     financeTerm: 60,
@@ -35,7 +35,7 @@
   var INCENTIVES = [
     { id: "ne-2250", label: "Northeast BC Regional Lease Bonus Cash", amount: 2250, modes: ["lease"] },
     { id: "ne-1500", label: "Northeast BC Regional Lease Bonus Cash", amount: 1500, modes: ["lease"] },
-    { id: "nat-1000", label: "National Bonus Cash", amount: 1000, modes: ["lease", "finance", "cash"] },
+    { id: "nat-1000", label: "National Bonus Cash", amount: 1000, modes: ["lease", "finance"] },
   ];
 
   var OFFERS = [
@@ -89,35 +89,18 @@
     return Math.max(28, Math.min(72, base + delta));
   }
 
-  function moneyFactorFor(term, mode) {
-    if (mode !== "lease") return 0;
-    if (term <= 36) return 0.00099;
-    if (term <= 42) return 0.00115;
-    return 0.00125;
-  }
-
-  function sumAmounts(items) {
-    return items.reduce(function (s, it) {
-      return s + num(it.amount);
-    }, 0);
-  }
-
-  function incentivesFor(mode) {
-    return INCENTIVES.filter(function (row) {
-      return row.modes.indexOf(mode) !== -1;
-    });
-  }
-
   function compute(state) {
     state = Object.assign({}, DEFAULTS, state || {});
     var mode = state.mode || "lease";
     var msrp = Math.max(0, num(state.msrp, DEFAULTS.msrp));
     var selling = Math.max(0, num(state.sellingPrice, msrp));
     var down = Math.max(0, num(state.down, DEFAULTS.down));
-    var term = Math.round(num(state.term, DEFAULTS.term));
+    var term = Math.max(1, Math.round(num(state.term, DEFAULTS.term)));
     var mileage = Math.round(num(state.mileage, DEFAULTS.mileage));
     var taxRate = num(state.taxRate, DEFAULTS.taxRate);
-    var docFee = num(state.docFee, DEFAULTS.docFee);
+    if (taxRate > 1) taxRate = taxRate / 100;
+    if (taxRate < 0) taxRate = 0;
+    var fees = Math.max(0, round2(num(state.fees, DEFAULTS.fees)));
 
     var incentiveTotal = Math.max(0, num(state.incentiveTotal, DEFAULTS.incentiveTotal));
     var offerTotal = Math.max(0, num(state.offerTotal, DEFAULTS.offerTotal));
@@ -128,21 +111,18 @@
 
     var resPct = residualPct(term, mileage);
     var residual = round2(msrp * (resPct / 100));
-    var rawMf = num(state.moneyFactor, moneyFactorFor(term, mode));
-    // Values >= 0.05 are treated as APR and converted (3.0 or 3 → 0.00125).
+    var rawMf = num(state.moneyFactor, DEFAULTS.moneyFactor);
     var mf = rawMf >= 0.05 ? rawMf / 2400 : rawMf;
     if (mf < 0) mf = 0;
     if (mf > 0.02) mf = 0.02;
 
-    var depMonthly = term > 0 ? (adjustedCap - residual) / term : 0;
+    var depMonthly = (adjustedCap - residual) / term;
     var rentMonthly = (adjustedCap + residual) * mf;
     var baseMonthly = round2(Math.max(0, depMonthly + rentMonthly));
 
-    var taxAndFees =
-      state.taxAndFees == null || state.taxAndFees === ""
-        ? round2((down + baseMonthly) * taxRate + docFee)
-        : Math.max(0, round2(num(state.taxAndFees, 0)));
-    var dueAtSigning = round2(down + taxAndFees + baseMonthly);
+    var tax = round2(adjustedCap * taxRate);
+    var taxAndFees = round2(tax + fees);
+    var dueAtSigning = round2(down + tax + fees + baseMonthly);
 
     var financeTerm = Math.max(1, Math.round(num(state.financeTerm, DEFAULTS.financeTerm)));
     var financeApr = num(state.financeApr, DEFAULTS.financeApr);
@@ -153,8 +133,6 @@
         ? amountFinanced / financeTerm
         : (amountFinanced * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -financeTerm));
     financeMonthly = round2(financeMonthly);
-
-    var cashPrice = Math.max(0, selling - incentiveTotal - offerTotal);
 
     return {
       mode: mode,
@@ -175,14 +153,15 @@
       rentMonthly: rentMonthly,
       baseMonthly: baseMonthly,
       taxRate: taxRate,
+      tax: tax,
+      fees: fees,
       taxAndFees: taxAndFees,
       dueAtSigning: dueAtSigning,
-      dueAtSigningDisplay: round0(dueAtSigning),
+      dueAtSigningDisplay: dueAtSigning,
       financeTerm: financeTerm,
       financeApr: financeApr,
       amountFinanced: round2(amountFinanced),
       financeMonthly: financeMonthly,
-      cashPrice: round2(cashPrice),
     };
   }
 
@@ -215,7 +194,6 @@
     num: num,
     round2: round2,
     residualPct: residualPct,
-    moneyFactorFor: moneyFactorFor,
     compute: compute,
     formatMoney: formatMoney,
     formatMoneySmart: formatMoneySmart,
