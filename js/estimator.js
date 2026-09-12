@@ -26,7 +26,7 @@
     mileage: 12000,
     taxRate: 0.057,
     docFee: 80,
-    moneyFactor: 0.00125,
+    moneyFactor: 0.00297,
     mode: "lease",
     financeApr: 0.0399,
     financeTerm: 60,
