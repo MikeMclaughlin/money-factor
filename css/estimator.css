@@ -543,7 +543,7 @@ h2.block-title {
 @media (max-width: 480px) {
   .field input[type="text"],
   .field input[type="number"] {
-    font-size: 16px;
+    font-size: 26px;
   }
   .due-row {
     flex-wrap: wrap;
